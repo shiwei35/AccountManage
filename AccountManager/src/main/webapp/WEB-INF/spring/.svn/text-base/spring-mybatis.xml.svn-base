@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	<!-- 配置数据源 -->
+	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClass}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 当连接池连接用完时，C3P0一次性创建的新连接数 -->
+		<property name="acquireIncrement" value="${jdbc.acquireIncrement}" />
+		<!-- 获取连接失败后尝试的次数 -->
+		<property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}" />
+		<!-- 获取获取连接的时间间隔（毫秒） -->
+		<property name="acquireRetryDelay" value="${jdbc.acquireRetryDelay}" />
+		<!-- 连接关闭时是否将所有未提交的操作自动提交（默认为false） -->
+		<property name="autoCommitOnClose" value="${jdbc.autoCommitOnClose}" />
+		<!-- 获取连接失败后是否断开连接并永久关闭 -->
+		<property name="breakAfterAcquireFailure" value="${jdbc.breakAfterAcquireFailure}" />
+		<!-- 连接池用完后获取连接等待时间（毫秒） -->
+		<property name="checkoutTimeout" value="${jdbc.checkoutTimeout}" />
+		<!-- 隔多少秒检查所有连接池中的空闲连接 -->
+		<property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}" />
+		<!-- 初始连接池大小 -->
+		<property name="initialPoolSize" value="${jdbc.initialPoolSize}" />
+		<!-- 最大空闲时间 -->
+		<property name="maxIdleTime" value="${jdbc.maxIdleTime}" />
+		<!-- 连接池最大连接数 -->
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+		<!-- 缓存preparedStatement的数量 -->
+		<property name="maxStatements" value="${jdbc.maxStatements}" />
+		<!-- 单个连接缓存preparedStatement的数量 -->
+		<property name="maxStatementsPerConnection" value="${jdbc.maxStatementsPerConnection}" />
+		<!-- 多线程支持数量 -->
+		<property name="numHelperThreads" value="${jdbc.numHelperThreads}" />
+		<!-- 测试连接的测试语句 -->
+		<property name="preferredTestQuery" value="${jdbc.preferredTestQuery}" />
+		<!-- 修改系统配置参数等待的秒数 -->
+		<property name="propertyCycle" value="${jdbc.propertyCycle}" />
+		<!-- 在提交连接时是否测试连接有效性 -->
+		<property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}" />
+		<!-- 在建立连接时是否测试连接有效性 -->
+		<property name="testConnectionOnCheckin" value="${jdbc.testConnectionOnCheckin}" />
+	</bean>
+
+	<!-- Mybatis配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="mapperLocations" value="classpath:com/aisino/finace/account/mapper/*.xml" />
+		<property name="configLocation" value="classpath:MapperConfig.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg  ref="sqlSessionFactory" /> 
+	</bean>
+	<!-- mapper bean -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.aisino.finace.account.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<!-- 配置事务，注解方式 -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource" />
+
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager" />
+</beans>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aisino.finace.account.dao.MlRoleMapper">
+	<select id="selectByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from ML_ROLE
+		where ROLE_ID in (select ROLE_ID from ML_USER_ROLE where USER_ID=#{userId,jdbcType=BIGINT}) 
+	</select>
+	<select id="getUnselectByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from ML_ROLE
+		where ROLE_ID not in (select ROLE_ID from ML_USER_ROLE where USER_ID=#{userId,jdbcType=BIGINT}) 
+	</select>
+</mapper>

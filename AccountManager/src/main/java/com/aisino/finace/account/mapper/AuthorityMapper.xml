@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aisino.finace.account.dao.MlSysAuthorityMapper" >
+	<select id="selectByRescId" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from ML_SYS_AUTHORITY
+		where RESC_ID = #{rescId,jdbcType=BIGINT}
+	</select>
+	<select id="selectByRoleId" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from  ML_SYS_AUTHORITY
+		where AUTH_ID in (select AUTH_ID from ML_ROLE_AUTH where ROLE_ID =  #{roleId,jdbcType=BIGINT})
+	</select>
+</mapper>

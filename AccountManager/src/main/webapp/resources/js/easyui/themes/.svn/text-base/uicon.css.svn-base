@@ -1,0 +1,8 @@
+@CHARSET "GB18030";
+
+.icon-ui-tree-leaf{
+	background:url('icons/tree-leaf.gif') no-repeat center center;
+}
+.icon-ui-auth{
+	background:url('icons/auth.gif') no-repeat center center;
+}

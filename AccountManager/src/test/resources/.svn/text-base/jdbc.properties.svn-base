@@ -1,0 +1,26 @@
+#mysql jdbc connection profile
+jdbc.driverClass=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/mldb
+jdbc.username=root
+jdbc.password=password
+
+#c3p0 connection pool configration
+jdbc.acquireIncrement=5
+jdbc.acquireRetryAttempts=10
+jdbc.acquireRetryDelay=1000
+jdbc.autoCommitOnClose=false
+jdbc.automaticTestTable=null
+jdbc.breakAfterAcquireFailure=false
+jdbc.checkoutTimeout=0
+jdbc.connectionTesterClassName=com.mchange.v2.C3P0.impl.DefaultConnectionTester
+jdbc.idleConnectionTestPeriod=7200
+jdbc.initialPoolSize=3
+jdbc.maxIdleTime=0
+jdbc.maxPoolSize=20
+jdbc.maxStatements=0
+jdbc.maxStatementsPerConnection=0
+jdbc.numHelperThreads=5
+jdbc.preferredTestQuery=null
+jdbc.propertyCycle=300
+jdbc.testConnectionOnCheckout=false
+jdbc.testConnectionOnCheckin=false 

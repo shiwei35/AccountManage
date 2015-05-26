@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aisino.finace.account.dao.MlSysRescMapper" >
+	<select id="getSavedRescByRoleId" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from ML_SYS_RESC
+		where IS_LEAF='Y' and RESC_ID in (select RESC_ID from ML_ROLE_RESC where ROLE_ID = #{roleId,jdbcType=BIGINT})
+	</select>
+	<select id="selectRealRescByRoleId" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from ML_SYS_RESC
+		where (RESC_ID in (select RESC_ID from ML_SYS_AUTHORITY where AUTH_ID in (select AUTH_ID from ML_ROLE_AUTH where ROLE_ID = #{roleId,jdbcType=BIGINT})) OR RESC_ID in (select RESC_ID from ML_ROLE_RESC where ROLE_ID = #{roleId,jdbcType=BIGINT}))
+	</select>
+	<select id="selectByUserId" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from ML_SYS_RESC
+		where RESC_ID in (select RESC_ID from ML_ROLE_RESC where ROLE_ID in (select ROLE_ID from ML_USER_ROLE where USER_ID = #{userId,jdbcType=BIGINT}))
+	</select>
+</mapper>

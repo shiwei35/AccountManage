@@ -1,0 +1,89 @@
+@CHARSET "GB18030";
+body,html{height:100%;}
+body{ padding:0px; margin:0;   overflow:hidden;font-family: Helvetica, "Helvetica Neue", "Century Gothic", "Î¢ÈíÑÅºÚ", "Microsoft Yahei", "STXihei";}  
+.topbar { width: 100%; height: 40px; color: #ddd; z-index: 100; min-width: 680px; background: #669de3/*#5579BA,e6eef8*/; position: fixed;}
+.topbar .content { padding: 0px; line-height: 40px; height: 40px; overflow: hidden;}
+.topbar .content i { display: inline-block; padding-right: 10px; text-shadow: 0 0 1px; font-size: 1.1em;}
+.topbar .content a { display: block; text-decoration: none; color: #fff; border: 1px solid #bfcce2/*#6787c1*/; -webkit-transition: all 0.2s; -moz-transition: all 0.2s; -o-transition: all 0.2s; -ms-transition: all 0.2s; transition: all 0.2s; padding: 0px 1.5em; border-top: none; border-bottom: none; outline: none;}
+.topbar .content .top_left a { float: left; margin-left: -1px; font-size: 14px;}
+.topbar .content .top_left a:hover,.topbar .content .top_left a.this { background: #6b8ac3;}
+.topbar .content .top_left a.title { font-size: 20px; width: 250px; padding: 0; text-align: center;}
+.topbar .content .top_left a b { color: #9CF; font-weight: 400;}
+.topbar .content .top_left a.title:hover { background: none;}
+.topbar .content .top_right { float: right; margin-right: 10px;}
+.topbar .content .top_right div { display: inline-block;}
+.topbar .content .top_right a { display: inline-block; padding: 0px 1em;}
+.topbar .content .top_right a { border: none; color: #fff;}
+.topbar .content .top_right .open a:focus { background: #6b8ac3;}
+.topbar .content .top_right .menu-topbar_user { position: absolute; right: 10px; left: auto; margin-top: 0px; width: auto;}
+.topbar .content .top_right .topbar_role { position: absolute; right: 105px; left: auto; margin-top: 0px; width: auto;}
+.topbar .content .top_right .topbar_text { font-size: 1.1em; color: #FFFFFF;}
+.topbar .content .top_right ul a { color: #666; line-height: 30px; height: 30px; display: block;}
+.topbar .content .top_right ul a:hover,.topbar .content .top_right ul a.this { background: #e6e6e6; color: #000;}
+.topbar .content .top_right ul .font-icon { width: 18px; display: inline-block;}
+
+table.querytable {
+	font-size: 12px;
+	color: #333333;
+	border-width: 1px;
+	border-color: #a9c6c9;
+	border-style: solid;
+	border-collapse: collapse;
+}
+.tdleft{text-align:left;padding-left:10px;}
+.tdright{text-align:right;padding-right:10px;}
+table.querytable th {
+	border-width: 1px;
+	border-color: #a9c6c9;
+	border-style: solid;
+	background-color: #E0ECFF;
+}
+
+table.querytable td {
+	padding: 5px;
+	border-width: 1px;
+	border-color: #a9c6c9;
+	border-style: solid;
+	background-color: #ffffff;
+}
+
+table.modifytable {
+	font-size: 12px;
+	color: #333333;
+	border-width: 1px;
+	border-color: #a9c6c9;
+	border-style: solid;
+	border-collapse: collapse;
+}
+
+table.modifytable th {
+	border-width: 1px;
+	border-color: #a9c6c9;
+	border-style: solid;
+	background-color: #E0ECFF;
+}
+
+table.modifytable td {
+	padding: 5px;
+	border-width: 1px;
+	border-color: #a9c6c9;
+	border-style: solid;
+	background-color: #ffffff;
+}
+table.detailTable td{
+	text-align:right;
+}
+.btn {
+	BORDER-RIGHT: #7b9ebd 1px solid;
+	PADDING-TOP: 2px;
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	PADDING-BOTTOM: 2px;
+	BORDER-TOP: #7b9ebd 1px solid;
+	FONT-SIZE: 12px;
+	BORDER-LEFT: #7b9ebd 1px solid;
+	CURSOR: hand;
+	COLOR: black;
+	background-color: #E0ECFF;
+	BORDER-BOTTOM: #7b9ebd 1px solid
+}

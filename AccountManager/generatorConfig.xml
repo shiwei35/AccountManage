@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry location="C:\Users\Harry Wang\.m2\repository\com\oracle\ojdbc6\11.2.0\ojdbc6-11.2.0.jar" />
+	<context id="context1"> 
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@192.168.46.4:1521:ora11g" userId="oracle"
+			password="oracle" />
+		<javaModelGenerator targetPackage="com.aisino.finace.account.entity"
+			targetProject="AccountManager">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="com.aisino.finace.account.mapper"
+			targetProject="AccountManager">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<javaClientGenerator targetPackage="com.aisino.finace.account.dao"
+			targetProject="AccountManager" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" /> 
+		</javaClientGenerator>
+		<table tableName="tm_MerAcct"/> <table tableName="tm_MerServAcctDetail"/> 
+			<table tableName="tm_merInfo"/> <table tableName="tm_MSInfo"/> 
+				<table tableName="tm_AisinoOrgInfo"/> <table tableName="tm_termInfo"/> 
+					<table tableName="tm_CHRInfo"/> <table tableName="tm_CHRInfoDetail"/> 
+	<!-- <table tableName="TC_issUserCHKACCT"/> <table tableName="TV_TRADETAIL"/> 
+	<table tableName="ML_USER"/> <table tableName="ML_ROLE"/> <table tableName="ML_SYS_RESC"/> 
+		<table tableName="ML_USER_ROLE"/> <table tableName="ML_SYS_PARAM"/> <table 
+		tableName="ML_SYS_LOG"/> <table tableName="ML_SYS_KEY"/> <table tableName="ML_SYS_AUTHORITY"/> 
+		<table tableName="ML_ROLE_RESC"/> <table tableName="ML_ROLE_AUTH"/> <table 
+		tableName="ML_ORG"/> <table tableName="ML_DICT"/> <table tableName="ML_DICT_ITEM"/> -->	
+	</context>
+</generatorConfiguration>

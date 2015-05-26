@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/toLogin.do" />
+		<!-- <property name="successUrl" value="/logon.do" /> -->
+		<!-- <property name="unauthorizedUrl" value="/noPermission.jsp" /> -->
+		<property name="filterChainDefinitions">
+			<value>
+				/toLogin.do = anon
+				/toSendMsg.do = anon
+				/resources/** = anon
+				/logon.do = anon
+				/exit.do = logout
+				#/** = authc
+			</value>
+		</property>
+	</bean>
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="mlRealm" />
+		<property name="sessionManager" ref="sessionManager" />
+		<property name="cacheManager" ref="shiroEhcacheManager" />
+	</bean>
+	<bean id="sessionManager"
+		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<property name="sessionDAO" ref="sessionDAO" />
+		<property name="globalSessionTimeout" value="1200000" />
+		<property name="sessionValidationScheduler" ref="sessionValidationScheduler" />
+		<property name="sessionValidationSchedulerEnabled" value="true" />
+	</bean>
+	<bean id="sessionDAO"
+		class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+	</bean>
+	<bean id="sessionValidationScheduler"
+		class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+		<property name="interval" value="3600000" />
+	</bean>
+
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+	<bean id="mlRealm" class="com.aisino.finace.account.shiro.MlRealm">
+	</bean>
+
+	<!-- 用户授权信息Cache, 采用EhCache -->
+	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManager" ref="cacheManager"/>
+	</bean>
+</beans>
